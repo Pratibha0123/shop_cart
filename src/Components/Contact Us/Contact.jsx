@@ -1,33 +1,83 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './Contact.css'
 
 const Contact = () => {
-  return (
-    <div className='Contact_us'>
-      <p className='Contact-dec' >
-      Thank you for choosing <span>𝒮𝒽𝑜𝓅 𝒞𝒶𝓇𝓉</span> for your fashion needs. We're here to assist you!<br/> If you have any questions, concerns, or simply want to share your feedback, please don't hesitate to get in touch with us.
 
-      </p><br/><br/>
-    <h3 className='Contact-dec'>Customer Support:</h3> <br/>
-    <p className='Contact-dec' >Our friendly customer support team is available to help you with any inquiries. Feel free to reach out via email or phone.<br/><br/>
-    Email: <span className='heading'>support@yourshopcart.com</span><br/>
-    Phone: <span className='heading'>+91-1233</span>
-    
-     </p> 
-
-     <br/><br/>
-
-     <p className='Contact-dec' >We value your feedback and are dedicated to providing you with the best shopping experience. Your satisfaction is our priority.<br/>
-     <br/>
-
-        Thank you for choosing <span>𝒮𝒽𝑜𝓅 𝒞𝒶𝓇𝓉</span>. We appreciate your trust and look forward to serving you!<br/><br/>
-
-      Happy Shopping!</p>
-
-
-
-    </div>
-  )
-}
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      message: ''
+    });
+  
+    const [errors, setErrors] = useState({});
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+  
+    const validateForm = () => {
+      const newErrors = {};
+      if (!formData.name) newErrors.name = 'Name is required';
+      if (!formData.email) newErrors.email = 'Email is required';
+      if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+      if (!formData.message) newErrors.message = 'Message is required';
+      return newErrors;
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const validationErrors = validateForm();
+      if (Object.keys(validationErrors).length === 0) {
+        // Handle form submission, e.g., send data to an API
+        console.log('Form data submitted:', formData);
+        // Reset form
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setErrors(validationErrors);
+      }
+    };
+  
+    return (
+      <div className='contact-page'>
+        <h1>Contact Us</h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor='name'>Name:</label>
+          <input
+            type='text'
+            id='name'
+            name='name'
+            value={formData.name}
+            onChange={handleChange}
+            placeholder='Your Name'
+          />
+          {errors.name && <p className='error'>{errors.name}</p>}
+  
+          <label htmlFor='email'>Email:</label>
+          <input
+            type='email'
+            id='email'
+            name='email'
+            value={formData.email}
+            onChange={handleChange}
+            placeholder='Your Email'
+          />
+          {errors.email && <p className='error'>{errors.email}</p>}
+  
+          <label htmlFor='message'>Message:</label>
+          <textarea
+            id='message'
+            name='message'
+            value={formData.message}
+            onChange={handleChange}
+            placeholder='Your Message'
+          />
+          {errors.message && <p className='error'>{errors.message}</p>}
+  
+          <button type='submit'>Send Message</button>
+        </form>
+      </div>
+    );
+  };
 
 export default Contact

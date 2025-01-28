@@ -1,27 +1,36 @@
-import React from 'react'
-import './CSS/loginsignup.css'
+import React, { useState } from 'react';
+import './CSS/loginsignup.css';
 
 const LoginSignup = () => {
+  const [isSignUp, setIsSignUp] = useState(true); 
+
   return (
     <div className='loginsignup'>
       <div className="loginsignup-container">
-        <h1>Sign Up</h1>
+        <h1>{isSignUp ? 'Sign Up' : 'Log In'}</h1>
         <div className="loginsignup-fields">
-          <input type="text" placeholder='Your Name' />
-          <input type="email" placeholder='Email Adress' />
-          <input type="password" placeholder='password' />
+          {isSignUp && (
+            <input type="text" placeholder='Your Name' />
+          )}
+          <input type="email" placeholder='Email Address' />
+          <input type="password" placeholder='Password' />
         </div>
-        <button>Continue</button>
+        {isSignUp && (
+          <div className="loginsignup-agree">
+            <input type="checkbox" id='agree' />
+            <p>By continuing, I agree to the terms of use & privacy policy.</p>
+          </div>
+        )}
         <p className='loginsignup-login'>
-          Already have an account? <snap>Login here</snap>
+          {isSignUp ? 'Already have an account?' : 'Don’t have an account?'}{' '}
+          <span onClick={() => setIsSignUp(!isSignUp)}>{isSignUp ? 'Login here' : 'Sign Up here'}</span>
         </p>
-        <div className="loginsignup-agree">
-          <input type="checkbox" name='' id='' />
-          <p>By continuing , i agree to the terms of use & privacy policy.</p>
-        </div>
+        <button>{isSignUp ? 'Continue' : 'Log In'}</button>
+        
+      
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginSignup
+export default LoginSignup;

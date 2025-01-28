@@ -1,18 +1,145 @@
-.Contact-dec {
-    text-align: justify;
-    font-size: 18px;
+/* General styles for the contact page */
+
+.contact-page {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-top: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-.Contact-dec span {
-    text-align: justify;
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #070606;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: gray;
+}
+
+input,
+textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.error {
+    color: red;
+    font-size: 0.875rem;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    color: white;
+    background: #070606;
+    margin-top: 30px;
+    border: none;
     font-size: 18px;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.Contact_us {
-    margin: 105px;
+button:hover {
+    background-color: white;
+    color: #070606;
+    border: 2px solid #070606;
 }
 
-.Contact-dec .heading {
-    color: blue;
+
+/* Mobile view: 360px to 414px */
+
+@media (max-width: 414px) {
+    .contact-page {
+        padding: 15px;
+        margin-top: 20px;
+    }
+    input,
+    textarea {
+        font-size: 14px;
+        padding: 8px;
+    }
+    button {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 414px) {
+    .contact-page {
+        padding: 15px;
+        margin-top: 20px;
+    }
+    input,
+    textarea {
+        font-size: 14px;
+        padding: 8px;
+    }
+    button {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+
+/* Small tablets and medium screens: 481px to 840px */
+
+@media (width: 360px) {
+    .contact-page {
+        padding: 10px;
+        margin-top: 30px;
+    }
+    input,
+    textarea {
+        font-size: 15px;
+        padding: 10px;
+        width: 310px;
+    }
+    button {
+        padding: 14px;
+        font-size: 18px;
+        width: 95%;
+    }
+}
+
+
+/* Large screens and laptops: 1280px and above */
+
+@media (min-width: 1280px) {
+    .contact-page {
+        max-width: 800px;
+        padding: 30px;
+        margin-top: 50px;
+    }
+    input,
+    textarea {
+        font-size: 18px;
+        padding: 12px;
+    }
+    button {
+        padding: 18px;
+        font-size: 20px;
+    }
 }
